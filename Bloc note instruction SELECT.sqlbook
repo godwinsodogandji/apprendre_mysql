@@ -1,0 +1,13 @@
+-- SQLBook: Markup
+1.L'instuction SELECT est utilisée pour sélectionner des données dans une base de données.
+
+Syntaxe SELECT:
+SELECT \* from nom_de_la_table;
+
+2. L'instruction SELECT DISTINCT est utilisée pour renvoyer uniquement des valeurs distinctes (différentes);
+
+3. L'instruction mysql Update
+   L'Update instruction est utilisée pour modifier les enregistrements existants dans une table
+
+Syntaxe UPDATE
+UPDATE table_name SET column1 = value1, column2 = value2 WHERE condition;
