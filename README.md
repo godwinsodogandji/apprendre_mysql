@@ -164,6 +164,7 @@ DROP TABLE persons;
 TRUNCATE TABLE persons;
 DESCRIBE persons ;
 
+
 INSERT INTO persons (nom, prenom, age) VALUES
 ('Doe', 'John', 25),
 ('Doe', 'Jane', 25),
@@ -227,4 +228,25 @@ SELECT * FROM track RIGHT JOIN album ON track.AlbumId = album.AlbumId;
 --CROSS JOIN: Renvoie tous les enregistrements de toutes les tables
 
 SELECT * FROM track CROSS JOIN album;
+
+
+
+
+L'opérateur MySQL UNION
+L' UNIONopérateur est utilisé pour combiner l'ensemble de résultats de deux ou plusieurs SELECT instructions.
+
+Chaque SELECTinstruction UNIONdoit avoir le même nombre de colonnes
+Les colonnes doivent également avoir des types de données similaires
+Les colonnes de chaque SELECTinstruction doivent également être dans le même ordre
+Syntaxe UNION
+SELECT column_name(s) FROM table1
+UNION
+SELECT column_name(s) FROM table2;
+Syntaxe UNION ALL
+L' UNIONopérateur sélectionne uniquement des valeurs distinctes par défaut. Pour autoriser les valeurs dupliquées, utilisez UNION ALL:
+
+SELECT column_name(s) FROM table1
+UNION ALL
+SELECT column_name(s) FROM table2;
+Remarque : les noms de colonnes dans l’ensemble de résultats sont généralement égaux aux noms de colonnes dans la première SELECTinstruction.
 
