@@ -150,3 +150,81 @@ FOREIGN KEY - Empêche les actions qui détruiraient les liens entre les tables
 `DEFAULT`- Définit une valeur par défaut pour une colonne si aucune valeur n'est spécifiée.
 
 `CREATE INDEX`- Utilisé pour créer et récupérer des données de la base de données très rapidement
+
+
+
+CREATE TABLE persons (
+    id INT NOT NULL AUTO_INCREMENT,
+    nom VARCHAR(255) NOT NULL,
+    age int NOT NULL,
+    prenom VARCHAR(255) NOT NULL,
+    PRIMARY KEY (id)
+);
+DROP TABLE persons;
+TRUNCATE TABLE persons;
+DESCRIBE persons ;
+
+INSERT INTO persons (nom, prenom, age) VALUES
+('Doe', 'John', 25),
+('Doe', 'Jane', 25),
+('Smith', 'Jim', 30),
+('Adams', 'Homer', 35),
+('Smith', 'Jack', 35),
+('Johnson', 'Bill', 40),
+('Johnson', 'Bill', 40),
+('Johnson', 'Bill', 40),
+('Adams', 'Homer', 35),
+('Johnson', 'Bill', 40);
+
+UPDATE persons SET nom = 'Godwin' , prenom = 'Jean-Michel', age = 25 WHERE id = 1;
+
+--faire une nouvelle copie de la table persons 
+CREATE TABLE copie_persons AS SELECT * FROM persons;
+
+--création d'une table album
+CREATE TABLE album (
+    AlbumId INT NOT NULL AUTO_INCREMENT,
+    Title VARCHAR(255) NOT NULL,
+    ArtistId INT NOT NULL,
+    PRIMARY KEY (AlbumId)
+);
+--creation d'une table Track 
+CREATE TABLE track (
+    TrackId INT NOT NULL AUTO_INCREMENT,
+    Name VARCHAR(255) NOT NULL,
+    AlbumId INT NOT NULL,
+    MediaTypeId INT NOT NULL,
+    GenreId INT NOT NULL,
+    Composer VARCHAR(255),
+    Milliseconds INT NOT NULL,
+    Bytes INT,
+    UnitPrice DECIMAL(10,2) NOT NULL,
+    PRIMARY KEY (TrackId)
+);
+-- insertion dans la table track
+INSERT INTO track (Name, AlbumId, MediaTypeId, GenreId, Composer, Milliseconds, Bytes, UnitPrice) VALUES
+('For Those About To Rock (We Salute You)', 1, 1, 1, 'Angus Young, Malcolm Young, Brian Johnson', 343719, 11170334, 0.99),
+('Put The Finger On You', 1, 1, 1, 'Angus Young, Malcolm Young, Brian Johnson', 205662, 6713451, 0.99),
+('Let Go', 1, 1, 1, 'Angus Young, Malcolm Young, Brian Johnson', 343224, 11170334, 0.99),
+('Inject The Venom', 1, 1, 1, 'Angus Young, Malcolm Young, Brian Johnson', 210834, 6852860, 0.99),
+('Snowballed', 1, 1, 1, 'Angus Young, Malcolm Young, Brian Johnson', 203223, 6728260, 0.99),
+('Evil Walks', 1, 1, 1, 'Angus Young, Malcolm Young, Brian Johnson', 263497, 8611245, 0.99);
+--mysql alias Syntaxe de la colonne Alias
+
+SELECT Name AS nom, AlbumId AS album FROM track;
+
+--jointures mysql
+--INNER JOIN: Renvoie les enregistrements qui ont des valeurs correspondantes dans les deux tables
+
+SELECT * FROM track INNER JOIN album ON track.AlbumId = album.AlbumId;
+
+--LEFT JOIN: Renvoie tous les enregistrements de la table de gauche et les enregistrements correspondants de la table de droite
+
+SELECT * FROM track LEFT JOIN album ON track.AlbumId = album.AlbumId;
+--RIGHT JOIN: Renvoie tous les enregistrements de la table de droite et les enregistrements correspondants de la table de gauche
+
+SELECT * FROM track RIGHT JOIN album ON track.AlbumId = album.AlbumId;
+--CROSS JOIN: Renvoie tous les enregistrements de toutes les tables
+
+SELECT * FROM track CROSS JOIN album;
+
